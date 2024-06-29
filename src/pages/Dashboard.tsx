@@ -1,6 +1,8 @@
 import CustomCarousel from "@/components/CustomCarousel";
+import CustomTabs from "@/components/CustomTabs";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { tabs } from "@/constants";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -28,18 +30,9 @@ const Dashboard = () => {
         </Link>
       </div>
 
-      <div>
-        <Tabs defaultValue="account" className="w-[700px]">
-          <TabsList className="w-[500px] flex items-center justify-center">
-            <TabsTrigger className="font-semibold flex-1" value="income">Income</TabsTrigger>
-            <TabsTrigger className="font-semibold flex-1" value="expense">Expense</TabsTrigger>
-          </TabsList>
-          <TabsContent value="income">
-            Income Chart here
-          </TabsContent>
-          <TabsContent value="expense">Expense Chart here.</TabsContent>
-        </Tabs>
-      </div>
+
+      {/* Charts */}
+      <CustomTabs />
     </div>
   );
 };

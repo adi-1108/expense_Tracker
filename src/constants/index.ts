@@ -30,3 +30,4 @@ export const sidebarOptions = [
     logo: "Cog6ToothIcon",
   },
 ];
+
