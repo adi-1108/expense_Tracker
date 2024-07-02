@@ -14,14 +14,14 @@ export const tabs = [
   },
 ];
 
-const CustomTabs = ({ className }: { className: string }) => {
+const CustomTabs = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabChange = (index: number) => {
     setActiveTab(index);
   };
   return (
-    <div className={cn(className)}>
+    <div>
       <div className="bg-primary-foreground w-fit px-4 py-3 rounded-2xl">
         <div className="flex items-center justify-start gap-4">
           {tabs.map((tab, i) => (

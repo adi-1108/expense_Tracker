@@ -2,12 +2,17 @@ import CustomCarousel from "@/components/CustomCarousel";
 import CustomTabs from "@/components/CustomTabs";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { PlusIcon } from "@heroicons/react/24/outline";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { tabs } from "@/constants";
-import React from "react";
+
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from "@/components/Modal";
+import AccountAddForm from "@/components/ui/AccountAddForm";
 
 const Dashboard = () => {
+  const [addAccountModal, setAddAccountModal] = useState(false);
+
   return (
     <div className="px-10">
       {/* Heading */}
@@ -19,10 +24,20 @@ const Dashboard = () => {
           placeholder="Search"
         />
       </div>
-
       {/* Cards Carasouel */}
-      <CustomCarousel />
-
+      {/* <CustomCarousel /> */}
+      {/* ACCOUNTS TO ADD */}
+      <Card
+        onClick={() => setAddAccountModal(!addAccountModal)}
+        className="px-8 hover:bg-primary-foreground font-semibold cursor-pointer py-10 w-1/3 my-10 flex items-center gap-10"
+      >
+        Add a Account
+        <PlusIcon className="h-6 w-6 text-gray-500" />
+      </Card>
+      // Form to add account
+      <Modal onClose={() => setAddAccountModal(false)} show={addAccountModal}>
+        <AccountAddForm />
+      </Modal>
       {/* Analysis Header */}
       <div className="flex items-center justify-between my-6">
         <h1 className="text-2xl">Analysis</h1>
@@ -30,15 +45,9 @@ const Dashboard = () => {
           View Details
         </Link>
       </div>
-
       {/* Charts */}
-      <CustomTabs  />
-
+      <CustomTabs />
       {/* Overview Cards */}
-
-      <Card>
-
-      </Card>
     </div>
   );
 };
