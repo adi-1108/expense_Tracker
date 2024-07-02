@@ -1,5 +1,6 @@
 import CustomCarousel from "@/components/CustomCarousel";
 import CustomTabs from "@/components/CustomTabs";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { tabs } from "@/constants";
@@ -30,9 +31,14 @@ const Dashboard = () => {
         </Link>
       </div>
 
-
       {/* Charts */}
-      <CustomTabs />
+      <CustomTabs  />
+
+      {/* Overview Cards */}
+
+      <Card>
+
+      </Card>
     </div>
   );
 };

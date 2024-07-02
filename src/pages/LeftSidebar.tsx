@@ -15,7 +15,7 @@ import RightSidebar from "./RightSidebar";
 const LeftSidebar = () => (
   <div className=" min-h-screen flex">
     {/* Sidebar */}
-    <div className="flex-[0.3] flex flex-col gap-10 items-center">
+    <div className="flex-[0.3] flex flex-col gap-10 items-center ">
       <Logo />
       <div className="flex flex-col gap-5 items-start justify-start">
         <SidebarOptions
