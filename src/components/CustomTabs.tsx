@@ -26,6 +26,7 @@ const CustomTabs = () => {
         <div className="flex items-center justify-start gap-4">
           {tabs.map((tab, i) => (
             <button
+            key={i}
               className={cn(
                 "hover:bg-primary px-4 py-3 rounded-md transition-all",
                 {
