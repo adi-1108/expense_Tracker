@@ -1,26 +1,89 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import React from "react";
+import React, { useState } from "react";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { Link, redirect, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../features/user/userSlice.js";
 
 const SignUp = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleSignupUser = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await createUserWithEmailAndPassword(auth, email, password);
+    const user = auth.currentUser;
+    await updateProfile(auth.currentUser, {
+      displayName: name,
+    });
+    const newUser = {
+      name: name,
+      email: user?.email,
+      uid: user?.uid,
+    };
+    console.log(newUser);
+    dispatch(login(newUser));
+    navigate("/");
+  };
+
   return (
-    <div className='flex justify-center items-center w-screen h-screen'>
-      <div className='px-10 py-8 bg-accent rounded-2xl w-[calc(100vw-50%)] max-h-[calc(100vh-400px)]'>
-        <h1 className='text-7xl font-semibold mb-10'>
-          Sign <span className='text-primary hover:text-secondary-foreground'>In</span>
+    <div className="flex h-screen w-screen items-center justify-center">
+      <div className="max-h-[calc(100vh-400px)] w-[calc(100vw-50%)] rounded-2xl bg-accent px-10 py-8">
+        <h1 className="mb-10 text-7xl font-semibold">
+          Sign{" "}
+          <span className="text-primary hover:text-secondary-foreground">
+            Up
+          </span>
         </h1>
-        <form className='flex flex-col gap-10 '>
-          <div className='flex gap-3 flex-col  justify-center'>
-            <label className='text-xl w-20'>Email</label>
-            <Input className=' py-6 text-lg' type='email' name='email' />
+        <form onSubmit={handleSignupUser} className="flex flex-col gap-10">
+          <div className="flex flex-col justify-center gap-3">
+            <label className="w-20 text-xl">Name</label>
+            <Input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="py-6 text-lg"
+              type="name"
+              name="name"
+            />
           </div>
-          <div className='flex justify-center flex-col gap-3'>
-            <label className='flex-1 w-20 text-xl'>Password</label>
-            <Input type='password' className='py-6 text-lg' name='password' />
+          <div className="flex flex-col justify-center gap-3">
+            <label className="w-20 text-xl">Email</label>
+            <Input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="py-6 text-lg"
+              type="email"
+              name="email"
+            />
           </div>
-          <Button className='font-semibold uppercase' type='submit'>
+          <div className="flex flex-col justify-center gap-3">
+            <label className="w-20 flex-1 text-xl">Password</label>
+            <Input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              className="py-6 text-lg"
+              name="password"
+            />
+          </div>
+          <Button
+            onClick={handleSignupUser}
+            className="font-semibold uppercase"
+            type="submit"
+          >
             Sign In
           </Button>
+
+          <Link to="/signin" >Already a user? <span className="bg-primary underline">Sign in here</span></Link>
         </form>
       </div>
     </div>
