@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { Link, redirect, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../features/user/userSlice.js";
 
 const SignUp = () => {
@@ -34,6 +34,12 @@ const SignUp = () => {
     dispatch(login(newUser));
     navigate("/");
   };
+
+  const user = useSelector((state: any) => state.user.user);
+  useEffect(() => {
+    console.log(user);
+    if (user.uid) navigate("/");
+  }, []);
 
   return (
     <div className="flex h-screen w-screen items-center justify-center">
@@ -83,7 +89,10 @@ const SignUp = () => {
             Sign In
           </Button>
 
-          <Link to="/signin" >Already a user? <span className="bg-primary underline">Sign in here</span></Link>
+          <Link to="/signin">
+            Already a user?{" "}
+            <span className="bg-primary underline">Sign in here</span>
+          </Link>
         </form>
       </div>
     </div>

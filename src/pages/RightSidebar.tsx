@@ -2,7 +2,11 @@ import React from 'react'
 
 const RightSidebar = () => {
   return (
-    <div>RightSidebar</div>
+    <div className='mt-10  '>
+      <div>
+        <label>Name</label>
+      </div>
+    </div>
   )
 }
 

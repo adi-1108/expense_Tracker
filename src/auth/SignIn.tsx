@@ -12,6 +12,8 @@ const SignIn = () => {
     console.log(user);
     if (user.uid) navigate("/");
   }, []);
+
+  
   return (
     <div className="flex h-screen w-screen items-center justify-center">
       <div className="max-h-[calc(100vh-400px)] w-[calc(100vw-50%)] rounded-2xl bg-accent px-10 py-8">
