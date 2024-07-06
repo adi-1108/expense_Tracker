@@ -10,7 +10,7 @@ const SidebarOptions = ({
     id: number;
     route: string;
     title: string;
-    logo: string;
+    logo: React.ReactNode;
   };
   Logo: any;
 }) => {

@@ -1,15 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import React, { useEffect, useState } from "react";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "@/lib/firebase";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../features/user/userSlice.js";
+import { signin } from "../features/user/userSlice.js";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -28,10 +24,12 @@ const SignUp = () => {
     const newUser = {
       name: name,
       email: user?.email,
+      password: password,
+      createdAt : new Date().toISOString(),
       uid: user?.uid,
     };
     console.log(newUser);
-    dispatch(login(newUser));
+    dispatch(signin(newUser));
     navigate("/");
   };
 
