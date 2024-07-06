@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 import React, { useEffect } from "react";
 import SidebarOptions from "@/components/SidebarOptions";
@@ -11,6 +11,7 @@ import {
   ArrowsRightLeftIcon,
 } from "@heroicons/react/24/solid";
 import RightSidebar from "./RightSidebar";
+import { useSelector } from "react-redux";
 
 export const sidebarOptions = [
   {
@@ -46,13 +47,16 @@ export const sidebarOptions = [
 ];
 
 const LeftSidebar = () => {
-
+  const navigate = useNavigate();
+  const user = useSelector((state: any) => state.user.user);
   useEffect(() => {
-    
-  },[])
+    if (user === null) {
+      navigate("/signin");
+    }
+  }, []);
 
   return (
-    <div className="flex min-h-screen">
+    <div className="mx-auto flex w-[calc(100vw-5%)]">
       {/* Sidebar */}
       <div className="flex flex-[0.35] flex-col items-center gap-10">
         <Logo />

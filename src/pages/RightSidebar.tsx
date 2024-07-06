@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 import { CheckIcon } from "@heroicons/react/24/solid";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signin, signout } from "../features/user/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const RightSidebar = () => {
+  const user = useSelector((state: any) => state.user.user);
   const [profileOptions, setProfileOptions] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleOptionClick = () => {
@@ -14,10 +17,12 @@ const RightSidebar = () => {
   };
 
   const handlelogout = () => {
-    dispatch(signout);
+    dispatch(signout());
+    console.log("User Signed Out");
+    navigate("/signin");
   };
   return (
-    <div className="mt-20 px-5">
+    <div className="mt-20 px-10">
       <div className="flex items-center justify-between">
         <label>Profile</label>
         <EllipsisVerticalIcon
@@ -26,8 +31,11 @@ const RightSidebar = () => {
         />
 
         {profileOptions && (
-          <div className="absolute right-10 mt-32 w-48 origin-top-left cursor-pointer divide-y divide-gray-100 rounded-md border border-gray-300 bg-red-700 shadow-lg transition-all hover:bg-red-800">
-            <button onClick={handlelogout} className="px-4 py-2">
+          <div
+            onClick={handlelogout}
+            className="absolute right-10 mt-28 w-48 cursor-pointer rounded-md border border-gray-300 bg-red-700 shadow-lg transition-all hover:bg-red-800"
+          >
+            <button className="px-4 py-2">
               <label className="font-semibold">Logout </label>
             </button>
           </div>
@@ -40,7 +48,7 @@ const RightSidebar = () => {
 
       <div className="mt-4 flex items-center justify-center gap-5">
         <label className="font-semibold" htmlFor="">
-          Aditya Vishwakarma
+          {user?.name}
         </label>
         <CheckIcon className="h-6 w-6 rounded-full bg-blue-700 text-white" />
       </div>

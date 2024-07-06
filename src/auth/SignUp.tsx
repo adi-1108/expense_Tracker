@@ -36,12 +36,12 @@ const SignUp = () => {
   const user = useSelector((state: any) => state.user.user);
   useEffect(() => {
     console.log(user);
-    if (user.uid) navigate("/");
+    if (user?.uid) navigate("/");
   }, []);
 
   return (
     <div className="flex h-screen w-screen items-center justify-center">
-      <div className="max-h-[calc(100vh-400px)] w-[calc(100vw-50%)] rounded-2xl bg-accent px-10 py-8">
+      <div className=" w-[calc(100vw-50%)] rounded-2xl bg-accent px-10 py-8">
         <h1 className="mb-10 text-7xl font-semibold">
           Sign{" "}
           <span className="text-primary hover:text-secondary-foreground">
@@ -79,18 +79,19 @@ const SignUp = () => {
               name="password"
             />
           </div>
+          <Link to="/signin">
+            Already a user?{" "}
+            <span className="bg-primary underline">Sign in here</span>
+          </Link>
           <Button
             onClick={handleSignupUser}
             className="font-semibold uppercase"
             type="submit"
           >
-            Sign In
+            Sign Up
           </Button>
 
-          <Link to="/signin">
-            Already a user?{" "}
-            <span className="bg-primary underline">Sign in here</span>
-          </Link>
+          
         </form>
       </div>
     </div>

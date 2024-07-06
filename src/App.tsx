@@ -15,18 +15,20 @@ const App = () => {
   }, []);
 
   return (
-    <Routes>
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/" element={<LeftSidebar />}>
-        <Route index element={<Dashboard />} />
-        <Route path="statistics" element={<Statistics />} />
-        <Route path="my-wallet" element={<MyWallet />} />
-        <Route path="transfers" element={<Transfers />} />
-        <Route path="settings" element={<Settings />} />
-        <Route path="details" element={<Details />} />
-      </Route>
-    </Routes>
+    <div className="w-screen h-screen">
+      <Routes>
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/" element={<LeftSidebar />}>
+          <Route index element={<Dashboard />} />
+          <Route path="statistics" element={<Statistics />} />
+          <Route path="my-wallet" element={<MyWallet />} />
+          <Route path="transfers" element={<Transfers />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="details" element={<Details />} />
+        </Route>
+      </Routes>
+    </div>
   );
 };
 export default App;

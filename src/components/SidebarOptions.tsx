@@ -14,8 +14,6 @@ const SidebarOptions = ({
   };
   Logo: any;
 }) => {
-
-  
   const path = useLocation().pathname;
   const isActive = path === item.route;
 
@@ -23,11 +21,11 @@ const SidebarOptions = ({
     <Link
       to={item.route}
       className={cn(
-        "flex items-center justify-center gap-5 cursor-pointer hover:bg-primary px-8 py-4 rounded-full transition-all hover:scale-110",
+        "flex cursor-pointer items-center justify-center gap-5 rounded-full px-16 py-4 transition-all hover:scale-110 hover:bg-primary ",
         {
           "bg-primary": isActive,
           "bg-inherit": !isActive,
-        }
+        },
       )}
     >
       {Logo}
