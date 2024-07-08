@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import React, { useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { auth } from "@/firebase.js";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signin } from "../features/user/userSlice.js";
@@ -24,7 +24,6 @@ const SignUp = () => {
     const newUser = {
       name: name,
       email: user?.email,
-      password: password,
       createdAt : new Date().toISOString(),
       uid: user?.uid,
     };

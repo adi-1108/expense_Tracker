@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { signin } from "@/features/user/userSlice";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -25,9 +26,15 @@ const SignIn = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        dispatch(signin());
-        navigate("/");
 
+        const newUser = {
+          name: user.displayName,
+          email: user?.email,
+          createdAt: new Date().toISOString(),
+          uid: user?.uid,
+        };
+        dispatch(signin(newUser));
+        navigate("/");
         // ...
       })
       .catch((error) => {

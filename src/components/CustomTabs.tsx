@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
+import { title } from "process";
 import React, { useEffect, useState } from "react";
+import BankCard from "./BankCard";
 
 export const tabs = [
   {
@@ -10,8 +12,9 @@ export const tabs = [
   {
     title: "Expenses",
     id: 1,
-    component: () => <div>Expenses</div>,
+    component: () => <BankCard /> 
   },
+
 ];
 
 const CustomTabs = () => {
@@ -22,16 +25,16 @@ const CustomTabs = () => {
   };
   return (
     <div>
-      <div className="bg-primary-foreground w-fit px-4 py-3 rounded-2xl">
+      <div className="w-fit rounded-2xl bg-primary-foreground px-4 py-3">
         <div className="flex items-center justify-start gap-4">
           {tabs.map((tab, i) => (
             <button
-            key={i}
+              key={i}
               className={cn(
-                "hover:bg-primary px-4 py-3 rounded-md transition-all",
+                "rounded-md px-4 py-3 transition-all hover:bg-primary",
                 {
                   "bg-primary": activeTab === tab.id,
-                }
+                },
               )}
               onClick={() => handleTabChange(i)}
             >
