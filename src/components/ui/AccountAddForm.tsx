@@ -6,7 +6,7 @@ import { db } from "@/firebase";
 import { faker } from "@faker-js/faker";
 import { useSelector } from "react-redux";
 
-const AccountAddForm = () => {
+const AccountAddForm = ({ modalClose }) => {
   const [accountType, setAccountType] = useState("savings");
   const [customAccountName, setcustomAccountName] = useState("");
   const [bankName, setBankName] = useState("");
@@ -24,10 +24,17 @@ const AccountAddForm = () => {
       balance,
       accountNumber,
       currency,
-      accountType
+      accountType,
+      account_id: faker.string.uuid(),
     };
-    await setDoc(doc(db, "accounts", faker.string.numeric(9)), newAccount);
-    console.log("Account Added");
+    await setDoc(doc(db, "accounts", newAccount.account_id), newAccount);
+    setcustomAccountName("");
+    setAccountNumber(0);
+    setBalance(0);
+    setCurrency("INR");
+    setAccountType("savings");
+    setBankName("");
+    modalClose();
   };
 
   return (
@@ -141,7 +148,7 @@ const AccountAddForm = () => {
           Account Number (Optional)
         </label>
         <Input
-        maxLength={16}
+          maxLength={16}
           className="flex-1 rounded-xl bg-secondary-foreground px-4 py-2 font-semibold text-muted transition-all"
           type="number"
           placeholder="Enter the Account Number"

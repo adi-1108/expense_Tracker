@@ -12,7 +12,7 @@ export const tabs = [
   {
     title: "Expenses",
     id: 1,
-    component: () => <BankCard /> 
+    component: () => <div>expense</div> 
   },
 
 ];

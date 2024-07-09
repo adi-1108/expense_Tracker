@@ -24,7 +24,7 @@ export const userSlice = createSlice({
     },
     removeAccount(state, action) {
       state.accounts = state.accounts.filter(
-        (account) => account.id !== action.payload,
+        (account) => account.account_id !== action.payload,
       );
     },
   },

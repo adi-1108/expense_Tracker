@@ -45,7 +45,7 @@ const SignIn = () => {
 
   return (
     <div className="flex h-screen w-screen items-center justify-center">
-      <div className="max-h-[calc(100vh-400px)] w-[calc(100vw-50%)] rounded-2xl bg-accent px-10 py-8">
+      <div className="w-[calc(100vw-70%)] rounded-2xl bg-accent px-10 py-8">
         <h1 className="mb-10 text-7xl font-semibold">
           Sign{" "}
           <span className="text-primary hover:text-secondary-foreground">
