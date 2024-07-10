@@ -15,7 +15,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="w-screen h-screen">
+    <div className="h-screen w-screen">
       <Routes>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />

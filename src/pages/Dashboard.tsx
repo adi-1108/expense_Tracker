@@ -50,16 +50,22 @@ const Dashboard = () => {
       </div>
 
       {user.accounts.length > 0 ? (
-        <div className="flex flex-col py-4">
-          <div>
-            <label
+        <div className="flex flex-col items-end py-4">
+          <div className="">
+            <button
+              onClick={() => setAddAccountModal(!addAccountModal)}
               className="cursor-pointer text-blue-500 underline"
-              htmlFor=""
             >
               Add a Account{" "}
-            </label>
+            </button>
           </div>
           <BankCardScroller />
+          <Modal
+            onClose={() => setAddAccountModal(false)}
+            show={addAccountModal}
+          >
+            <AccountAddForm modalClose={() => setAddAccountModal(false)} />
+          </Modal>
         </div>
       ) : (
         <>

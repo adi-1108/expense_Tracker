@@ -29,10 +29,15 @@ const BankCard = ({
         setMenu(false);
         setMenuSelected(false);
       }}
-      className="flex h-[200px] w-[400px] flex-none flex-col justify-between rounded-2xl bg-gradient-to-r from-orange-500 to-primary px-6 py-8 transition-all hover:scale-105 hover:bg-gradient-to-l hover:from-orange-500 hover:to-primary"
+      className="flex h-[180px] w-[400px] flex-col justify-between rounded-2xl bg-gradient-to-r from-orange-500 to-primary px-6 py-4 transition-all hover:scale-105 hover:bg-gradient-to-l hover:from-orange-500 hover:to-primary"
     >
       <div className="flex items-center justify-between">
-        <label htmlFor="">**** {accountNumber % 1000000000000} </label>
+        {accountNumber === 0 ? (
+          <div></div>
+        ) : (
+          <label htmlFor="">**** {accountNumber % 1000000000000} </label>
+        )}
+
         {menu && (
           <div className="relative cursor-pointer rounded-full p-1 transition-all hover:bg-gray-600 hover:bg-opacity-45 hover:shadow-lg">
             <EllipsisVerticalIcon
@@ -54,6 +59,11 @@ const BankCard = ({
           </div>
         )}
       </div>
+
+      <label className="font-semibold uppercase" htmlFor="">
+        {bankName}
+      </label>
+
       <div>
         <p>Balance</p>
         <label className="text-5xl font-bold" htmlFor="">
