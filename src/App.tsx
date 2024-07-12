@@ -6,6 +6,7 @@ import Details from "./pages/Details";
 import SignIn from "./auth/SignIn";
 import SignUp from "./auth/SignUp";
 import { useSelector } from "react-redux";
+import AddTransaction from "./pages/AddTransaction";
 
 const App = () => {
   const user = useSelector((state: any) => state.user.user);
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<LeftSidebar />}>
+          <Route path="addtransaction" element={<AddTransaction />} />
           <Route index element={<Dashboard />} />
           <Route path="statistics" element={<Statistics />} />
           <Route path="my-wallet" element={<MyWallet />} />

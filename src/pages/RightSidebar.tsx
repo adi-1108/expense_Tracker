@@ -5,6 +5,7 @@ import { CheckIcon } from "@heroicons/react/24/solid";
 import { useDispatch, useSelector } from "react-redux";
 import { signin, signout } from "../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
+import { PlusIcon } from "@heroicons/react/24/outline";
 
 const RightSidebar = () => {
   const user = useSelector((state: any) => state.user.user);
@@ -21,6 +22,7 @@ const RightSidebar = () => {
     console.log("User Signed Out");
     navigate("/signin");
   };
+
   return (
     <div className="mt-20 px-10">
       <div className="flex items-center justify-between">
@@ -63,6 +65,14 @@ const RightSidebar = () => {
         >
           See More
         </label>
+      </div>
+
+      {/* Adding a transcations menu */}
+      <div className="flex items-center justify-center">
+        <PlusIcon
+          className="my-5 h-10 w-10 cursor-pointer rounded-full bg-primary-foreground px-2 py-2 text-white transition-all hover:bg-accent"
+          onClick={() => navigate("/addtransaction")}
+        />
       </div>
     </div>
   );
